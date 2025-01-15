@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 export const routes: Routes = [
   {
     path: 'tabs',
-    component: TabsPage,
+    component: TabsPage, 
     children: [
       {
         path: 'tab1',
@@ -20,6 +20,11 @@ export const routes: Routes = [
         path: 'tab3',
         loadComponent: () =>
           import('../tab3/tab3.page').then((m) => m.Tab3Page),
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('../login-main/login-main.component').then((m) => m.LoginMainComponent),
       },
       {
         path: '',
