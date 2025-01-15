@@ -1,4 +1,6 @@
-﻿namespace Tasker.GraphQL;
+﻿using Tasker.Models;
+
+namespace Tasker.GraphQL;
 
 [QueryType]
 public class UserQueries
@@ -8,6 +10,16 @@ public class UserQueries
     [UseSorting]
     public async Task<List<User>> GetUsers([Service] DatabaseContext databaseContext)
     {
-        return await databaseContext.Users.ToListAsync();
+        var users = databaseContext.Users.ToListAsync();
+        return await users;
+    }
+
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public async Task<List<User>> CheckUsername([Service] DatabaseContext databaseContext, string username)
+    {
+        var users = databaseContext.Users.Where(x => x.UserName == username).ToListAsync();
+        return await users;
     }
 }
