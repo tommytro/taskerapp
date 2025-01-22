@@ -12,7 +12,7 @@ public class UserMutations
         {
             UserName = userName,
             Email = email,
-            Password = password,
+            PasswordHash = password,
             CreatedDate = DateTime.UtcNow
         };
 

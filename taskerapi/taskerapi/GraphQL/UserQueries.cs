@@ -1,13 +1,17 @@
-﻿using Tasker.Models;
+﻿using HotChocolate.Authorization;
 
 namespace Tasker.GraphQL;
 
 [QueryType]
+
+
 public class UserQueries
 {
+
     [UseProjection]
     [UseFiltering]
     [UseSorting]
+    [Authorize]
     public async Task<List<User>> GetUsers([Service] DatabaseContext databaseContext)
     {
         var users = databaseContext.Users.ToListAsync();
@@ -17,6 +21,7 @@ public class UserQueries
     [UseProjection]
     [UseFiltering]
     [UseSorting]
+    [Authorize]
     public async Task<List<User>> CheckUsername([Service] DatabaseContext databaseContext, string username)
     {
         var users = databaseContext.Users.Where(x => x.UserName == username).ToListAsync();
