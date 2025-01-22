@@ -7,9 +7,9 @@ export const routes: Routes = [
     component: TabsPage, 
     children: [
       {
-        path: 'tab1',
+        path: 'tasksmain',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../tasks-main/tasks-main.page').then((m) => m.TasksMainPage),
       },
       {
         path: 'tab2',
@@ -24,7 +24,7 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('../login-main/login-main.component').then((m) => m.LoginMainComponent),
+          import('../login/login.component').then((m) => m.LoginComponent),
       },
       {
         path: '',
@@ -35,7 +35,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/tasksmain',
     pathMatch: 'full',
   },
 ];

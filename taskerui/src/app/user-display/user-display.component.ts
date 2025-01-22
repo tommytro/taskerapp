@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { IonInput, IonItem, IonList, IonLabel } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { Apollo } from 'apollo-angular';
-import { GET_USERS } from '../GraphQL/graphql.queries';
+import { Apollo, gql } from 'apollo-angular';
+import { CHECK_USERNAME, GET_USERS } from '../GraphQL/graphql.queries';
 
 @Component({
   selector: 'app-user-display',
   templateUrl: './user-display.component.html',
   styleUrls: ['./user-display.component.scss'],
   standalone: true,
-  imports: [IonLabel, CommonModule, IonInput, IonItem, IonList],
+  imports: [ CommonModule],
 })
 export class UserDisplayComponent  implements OnInit {
 
@@ -20,10 +20,10 @@ export class UserDisplayComponent  implements OnInit {
 
   ngOnInit(): void {
     this.apollo
-      .watchQuery({
+      .query<any>({
         query: GET_USERS,
       })
-      .valueChanges.subscribe((result: any) => {
+      .subscribe((result: any) => {
         this.users = result.data && result.data.users;
         this.loading = result.loading;
         this.error = result.error;

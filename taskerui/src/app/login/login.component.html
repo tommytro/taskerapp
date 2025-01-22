@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isCreatingAccount ? 'Create Account' : 'Login' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (submit)="isCreatingAccount ? onCreateAccount() : login()">
+    <ion-list>
+      <!-- <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+      <ion-item *ngIf="isCreatingAccount">
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" type="submit">{{ isCreatingAccount ? 'Create Account' : 'Login' }}</ion-button>
+  </form>
+  <ion-button expand="full" (click)="toggleForm()">
+    {{ isCreatingAccount ? 'Already have an account? Login' : 'Don\'t have an account? Create one' }}
+  </ion-button>
+</ion-content>

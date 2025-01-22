@@ -14,12 +14,13 @@ bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)), provideHttpClient(), provideApollo(() => {
+    provideRouter(routes, withPreloading(PreloadAllModules)),  provideHttpClient(), provideApollo(() => {
       const httpLink = inject(HttpLink);
 
       return {
         link: httpLink.create({
           uri: 'https://localhost:7115/graphql/',
+          withCredentials: true,
         }),
         cache: new InMemoryCache(),
       };
